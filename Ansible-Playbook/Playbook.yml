@@ -1,22 +1,18 @@
 ---
-- hosts: all
-  become: true
+  - hosts: all
+    become: true
+  
+    tasks:
 
-  tasks:
-
-    - name: Install appache2 server
+    - name: Install apache httpd.
       ansible.builtin.apt:
         name: apache2
         state: present
-        update_cache: yes
 
-    - name: Copt HTML file with ower and permissions
+    - name: Copy file with owner and permissions.
       ansible.builtin.copy:
         src: index.html
         dest: /var/www/html
         owner: root
         group: root
         mode: '0644'
-
-    
-
